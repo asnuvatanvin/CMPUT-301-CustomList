@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class CityListTest {
+class  CityListTest {
 
     private CityList mockCityList() {
         CityList cityList = new CityList();
@@ -53,6 +53,44 @@ class CityListTest {
 
         assertEquals(0, city.compareTo(cityList.getCities().get(0)));
         assertEquals(0, mockCity().compareTo(cityList.getCities().get(1)));
+    }
+
+    @Test
+    void testDeleteCities(){
+
+        CityList citylist = mockCityList();
+
+        assertEquals(1, citylist.getCities().size());
+
+        City city = new City("New York", "Brooklyn");
+        citylist.add(city);
+        City city1 = new City("London","Hampshire");
+        citylist.add(city1);
+
+        assertEquals(3,citylist.getCities().size());
+
+        citylist.delete(city);
+        assertEquals(2,citylist.getCities().size());
+        assertFalse(citylist.getCities().contains(city));
+
+    }
+
+    @Test
+    void testlist_size(){
+        CityList citylist = mockCityList();
+
+        assertEquals(1, citylist.list_size());
+
+        City city = new City("New York", "Brooklyn");
+        citylist.add(city);
+        City city1 = new City("London","Hampshire");
+        citylist.add(city1);
+
+        assertEquals(3,citylist.list_size());
+
+        citylist.delete(city);
+        assertEquals(2,citylist.list_size());
+
     }
 
 }
